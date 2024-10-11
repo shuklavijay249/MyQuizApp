@@ -31,6 +31,7 @@ class FlagQuizFragment : Fragment() {
         FlagQuizViewModelFactory((requireActivity().application as MyApp).repository)
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
