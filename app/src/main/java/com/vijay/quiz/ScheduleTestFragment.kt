@@ -62,6 +62,7 @@ class ScheduleTestFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            binding.timeSetText.visibility = View.VISIBLE
             // Start the countdown 20 seconds before the scheduled time
             startCountdown(timeDifference - 20000) // Start timer 20 seconds before the challenge time
         }
