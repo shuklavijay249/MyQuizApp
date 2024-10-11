@@ -114,6 +114,8 @@ class FlagQuizFragment : Fragment() {
             flagImageView.setImageDrawable(drawable)
         } catch (e: IOException) {
             e.printStackTrace()
+            // Set a default image when the flag is not found
+            flagImageView.setImageResource(R.drawable.nz)
         }
     }
 
