@@ -1,5 +1,6 @@
 package com.vijay.quiz
 
+import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
@@ -10,8 +11,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.transition.Visibility
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.vijay.quiz.databinding.FragmentScheduleTestBinding
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class ScheduleTestFragment : Fragment() {
 
@@ -61,6 +66,12 @@ class ScheduleTestFragment : Fragment() {
                 Toast.makeText(requireContext(), "The scheduled time must be in the future", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
+            // Save the scheduled time for persistence
+            saveScheduledTime(challengeTime.timeInMillis)
+
+            // Schedule the app relaunch before 20 seconds
+            scheduleAppRelaunch(timeDifference)
 
             // Start the countdown 20 seconds before the scheduled time
             startCountdown(timeDifference - 20000) // Start timer 20 seconds before the challenge time
@@ -128,8 +139,41 @@ class ScheduleTestFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+    private fun saveScheduledTime(timeInMillis: Long) {
+        val sharedPreferences = requireContext().getSharedPreferences("ScheduleTestPrefs", Context.MODE_PRIVATE)
+        sharedPreferences.edit().putLong("scheduledTime", timeInMillis).apply()
+        binding.timeSetText.visibility = View.VISIBLE
+    }
+
+    private fun checkAndResumeCountdown() {
+        val sharedPreferences = requireContext().getSharedPreferences("ScheduleTestPrefs", Context.MODE_PRIVATE)
+        val scheduledTime = sharedPreferences.getLong("scheduledTime", -1)
+
+        if (scheduledTime != -1L) {
+            val currentTime = Calendar.getInstance().timeInMillis
+            val timeDifference = scheduledTime - currentTime
+
+            if (timeDifference > 0) {
+                startCountdown(timeDifference - 20000) // Resume the countdown if time remains
+            } else {
+                navigateToFlagQuizFragment() // If time has passed, start the challenge
+            }
+        }
+    }
+
+    private fun scheduleAppRelaunch(timeDifferenceInMillis: Long) {
+        val workManager = WorkManager.getInstance(requireContext())
+        val delayTime = timeDifferenceInMillis - 20000 // Schedule for 20 seconds before the challenge
+
+        val workRequest = OneTimeWorkRequestBuilder<AppRelaunchWorker>()
+            .setInitialDelay(delayTime, TimeUnit.MILLISECONDS)
+            .build()
+
+        workManager.enqueue(workRequest)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        countdownTimer?.cancel() // Clean up timer if the view is destroyed
+        countdownTimer?.cancel() // Clean up the timer if the view is destroyed
     }
 }

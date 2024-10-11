@@ -92,6 +92,18 @@
             android:text="Save" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/timeSetText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="Calender blocked"
+            android:textColor="#FF0000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/countdownText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
