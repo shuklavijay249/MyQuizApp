@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+
+    <string name="hour_hint">HH(00)</string>
+    <string name="minute_hint">MM(00)</string>
+    <string name="seconds_hint">SS(00)</string>
+
+    <string name="question_count">Question %1$d of %2$d</string>
+    <string name="submit_answer">Submit</string>
+    <string name="next_question">Next</string>
+
+    <string name="final_score">Your Final Score: %1$d</string>
+    <string name="restart_quiz">Restart Quiz</string>
+
+    <string name="correct_answer">Correct Answer!</string>
+    <string name="wrong_answer">Wrong Answer. Try Again!</string>
+    <string name="select_option">Please select an option!</string>
+    <string name="select_option_1">Select Option 1</string>
+    <string name="guess_the_country_from_flag">GUESS THE COUNTRY FROM FLAG?</string>
+    <string name="flag_challenge">FLAG CHALLENGE</string>
+    <string name="schedule">SCHEDULE</string>
+</resources>

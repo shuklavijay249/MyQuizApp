@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/nav_graph"
+app:startDestination="@id/scheduleTestFragment">
+
+<fragment
+    android:id="@+id/scheduleTestFragment"
+    android:name="com.vijay.quiz.ScheduleTestFragment"
+    android:label="Flag Quiz"
+    tools:layout="@layout/fragment_schedule_test" >
+    <action
+        android:id="@+id/action_scheduleTestFragment_to_flagQuizFragment"
+        app:destination="@id/flagQuizFragment" />
+</fragment>
+
+    <fragment
+        android:id="@+id/flagQuizFragment"
+        android:name="com.vijay.quiz.FlagQuizFragment"
+        android:label="Flag Quiz"
+        tools:layout="@layout/fragment_flag_quiz" >
+        <action
+            android:id="@+id/action_flagQuizFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.vijay.quiz.ResultFragment"
+        android:label="Result"
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="score"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+</navigation>

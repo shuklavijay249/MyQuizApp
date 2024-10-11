@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.vijay.quiz.FlagQuizViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/timerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:layout_gravity="center_vertical"
+                android:gravity="left"
+                android:padding="16dp"
+                android:text="00:30"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/flag_challenge"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:textColor="#FFA500"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/questionNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:layout_gravity="center_vertical"
+                android:gravity="left"
+                android:padding="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_500"
+                android:text='@{viewModel.currentQuestionNumber+""}'
+                android:textSize="18sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/questionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/guess_the_country_from_flag"
+                android:layout_gravity="center_vertical"
+                android:gravity="left"
+                android:textColor="#131213"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_vertical|center_horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/flagImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/nz"
+                app:flagImage="@{viewModel.currentQuestion.country_code}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="end"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/lin1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/optionButton1"
+                            style="@style/QuizOptionButton"
+                            android:layout_width="100dp"
+                            android:maxLines="1"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:textStyle="bold"
+                            android:text="Option 1" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/feedbackText1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="4dp"
+                            android:textColor="@color/black"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/optionButton2"
+                            style="@style/QuizOptionButton"
+                            android:layout_width="100dp"
+                            android:maxLines="1"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:textStyle="bold"
+                            android:text="Option 2" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/feedbackText2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="4dp"
+                            android:textColor="@color/black"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="end"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/optionButton3"
+                            android:layout_width="100dp"
+                            style="@style/QuizOptionButton"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:layout_gravity="end"
+                            android:textStyle="bold"
+                            android:text="Option 3" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/feedbackText3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="4dp"
+                            android:textColor="@color/black"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/optionButton4"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            style="@style/QuizOptionButton"
+                            android:maxLines="1"
+                            android:layout_gravity="end"
+                            android:textStyle="bold"
+                            android:text="Option 4" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/feedbackText4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="4dp"
+                            android:textColor="@color/black"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/feedbackTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</layout>
