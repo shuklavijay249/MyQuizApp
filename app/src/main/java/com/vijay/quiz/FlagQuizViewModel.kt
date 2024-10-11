@@ -63,7 +63,7 @@ class FlagQuizViewModel(private val repository: FlagRepository) : ViewModel() {
 
     private fun startQuestionTimer() {
         questionTimer?.cancel()
-        _timeLeft.value = 1 // Reset timer display to 30 seconds
+        _timeLeft.value = 30 // Reset timer display to 30 seconds
 
         questionTimer = object : CountDownTimer(30000, 1000) { // 30 seconds timer for each question
             override fun onTick(millisUntilFinished: Long) {
