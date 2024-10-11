@@ -161,6 +161,7 @@ class ScheduleTestFragment : Fragment() {
         }
     }
 
+
     private fun scheduleAppRelaunch(timeDifferenceInMillis: Long) {
         val workManager = WorkManager.getInstance(requireContext())
         val delayTime = timeDifferenceInMillis - 20000 // Schedule for 20 seconds before the challenge
